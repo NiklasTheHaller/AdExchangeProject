@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:17  # Use the desired version of PostgreSQL
+    container_name: adExchange
+    environment:
+      POSTGRES_DB: adx_Database  # database name
+      POSTGRES_USER: Noah  # Database username
+      POSTGRES_PASSWORD: myPassword  # Database password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Persist data even if the container restarts
+
+volumes:
+  postgres_data:
