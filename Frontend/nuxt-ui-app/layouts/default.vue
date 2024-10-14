@@ -5,7 +5,7 @@
 				<NuxtLink to="/">Ad Exchange</NuxtLink>
 				<ul>
 					<li><NuxtLink to="/">Home</NuxtLink></li>
-					<li><NuxtLink to="/registration">Registration</NuxtLink></li>
+					<li><NuxtLink to="/registrationPage">Registration</NuxtLink></li>
 				</ul>
 			</nav>
 		</header>
