@@ -1,16 +1,16 @@
 <template>
 	<div>
 		<header>
-			<nav>
-				<NuxtLink to="/">Ad Exchange</NuxtLink>
-				<ul>
+			<nav class="container mx-auto p-4 flex justify-between">
+				<NuxtLink class="font-bold" to="/">Ad Exchange</NuxtLink>
+				<ul class="flex gap-4">
 					<li><NuxtLink to="/">Home</NuxtLink></li>
 					<li><NuxtLink to="/registrationPage">Registration</NuxtLink></li>
 				</ul>
 			</nav>
 		</header>
 
-		<div>
+		<div class="container mx-auto p-4">
 			<slot />
 			<!-- Output Page Content -->
 		</div>
