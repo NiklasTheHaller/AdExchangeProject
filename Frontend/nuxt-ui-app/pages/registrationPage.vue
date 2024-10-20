@@ -1,7 +1,8 @@
 <template>
 	<div>
 		<h1 class="text-2xl font-bold mb-6">Registration</h1>
-		<form @submit.prevent="handleSubmit" class="max-w-md mx-auto" novalidate>
+		<!-- remove novalidate after testing -->
+		<form class="max-w-md mx-auto" novalidate @submit.prevent="handleSubmit">
 			<UFormGroup label="Username" name="username" class="mb-4">
 				<UInput
 					v-model.trim="form.username"
@@ -72,7 +73,6 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
 import { useNuxtApp } from '#app';
 
 const nuxtApp = useNuxtApp();
@@ -86,7 +86,7 @@ const form = ref({
 	confirmPassword: '',
 });
 
-const { error, execute } = useFetch(
+const { error, execute } = $fetch(
 	'https://jsonplaceholder.typicode.com/users',
 	{
 		method: 'POST',
