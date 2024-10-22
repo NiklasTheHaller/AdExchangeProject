@@ -20,7 +20,8 @@ const goToLogin = () => {
 		<header
 			class="bg-background/75 backdrop-blur border-b border-gray-200 dark:border-gray-800 -mb-px sticky top-0 z-50">
 			<nav class="container mx-auto p-4 flex justify-between items-center">
-				<NuxtLink class="flex-shrink-0 font-bold text-xl text-gray-900 dark:text-white inline-flex items-center"
+				<NuxtLink 
+				class="flex-shrink-0 font-bold text-xl text-gray-900 dark:text-white inline-flex items-center"
 					to="/">
 					<span class="text-gray-800 dark:text-white">Ad</span>
 					<span class="text-primary-500">Exchange</span>
@@ -50,7 +51,8 @@ const goToLogin = () => {
 
 					<li>
 						<ClientOnly>
-							<UButton :icon="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'"
+							<UButton 
+							:icon="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'"
 								color="gray" variant="ghost" aria-label="Theme" @click="isDark = !isDark" />
 							<template #fallback>
 								<div class="w-8 h-8" />

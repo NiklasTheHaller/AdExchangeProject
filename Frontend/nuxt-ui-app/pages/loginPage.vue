@@ -3,11 +3,12 @@
         <div class="max-w-md mx-auto">
             <h1 class="text-2xl font-bold mb-6">Sign In to Ad Exchange</H1>
 
-            <UForm :schema="schema" :state="state" class="space-y-4">
+            <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
 
                 <UFormGroup label="Email" name="email" size="xl">
-                    <UInput type="email" placeholder="you@example.com" icon="i-heroicons-envelope" />
-                    <!-- v-model="state.email"-->
+                    <UInput 
+                    v-model="state.email" type="email" placeholder="you@example.com"
+                        icon="i-heroicons-envelope" />
                 </UFormGroup>
 
                 <UFormGroup label="Password" name="password" size="xl">
@@ -15,8 +16,9 @@
                         <NuxtLink to="/reset-password" class="text-primary-500 underline">Forgot?</NuxtLink>
                     </template>
 
-                    <!-- v-model="state.password"-->
-                    <UInput type="password" placeholder="Enter Password" icon="i-heroicons-lock-closed" />
+                    <UInput 
+                    v-model="state.password" type="password" placeholder="Enter Password"
+                        icon="i-heroicons-lock-closed" />
                 </UFormGroup>
 
                 <UButton ui: type="submit" size="xl" class="login-button">
@@ -33,9 +35,28 @@
     </div>
 </template>
 
-<script lang="ts">
-import type { _padding } from '#tailwind-config/theme';
+<script setup lang="ts">
+import { object, string, type InferType } from 'yup'
+import type { FormSubmitEvent } from '#ui/types'
 
+const schema = object({
+    email: string().email('Invalid email').required('Required'),
+    password: string()
+        .min(8, 'Must be at least 8 characters')
+        .required('Required')
+})
+
+type Schema = InferType<typeof schema>
+
+const state = reactive({
+    email: undefined,
+    password: undefined
+})
+
+async function onSubmit(event: FormSubmitEvent<Schema>) {
+    // TODO: Call API to launch a login procedure
+    console.log(event.data)
+}
 
 </script>
 
