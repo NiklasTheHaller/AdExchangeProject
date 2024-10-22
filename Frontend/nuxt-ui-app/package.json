@@ -16,5 +16,8 @@
 		"@nuxtjs/eslint-module": "^4.1.0",
 		"nuxt": "^3.12.4",
 		"typescript": "^5.6.3"
+	},
+	"dependencies": {
+		"yup": "^1.4.0"
 	}
 }
