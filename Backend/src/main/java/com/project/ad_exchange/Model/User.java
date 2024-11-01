@@ -1,23 +1,38 @@
 package com.project.ad_exchange.Model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String username;
+
     private String email;
+
 
     private String password;
     @Enumerated(EnumType.STRING)
     private AccountType accountType;
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private BillingInfo billingInfo;
+
+    public User(String username, String email, String encodedPassword, AccountType accountType) {
+        this.username = username;
+        this.email = email;
+        this.password = encodedPassword;
+        this.accountType = accountType;
+
+    }
 
     public long getId() {
         return id;
