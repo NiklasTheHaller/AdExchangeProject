@@ -45,27 +45,18 @@ public class UserService {
 
     public String loginUser(LoginDto loginDto) {
         try {
-            UserDetails userDetails;
-            String identifier;
+            String identifier = (loginDto.username() != null && !loginDto.username().isEmpty())
+                    ? loginDto.username() : loginDto.email();
 
-            // Check if the input is a username or email
-            if (loginDto.username() != null && !loginDto.username().isEmpty()) {
-                userDetails = userDetailsService.loadUserByUsername(loginDto.username());
-                identifier = loginDto.username();
-            } else if (loginDto.email() != null && !loginDto.email().isEmpty()) {
-                userDetails = userDetailsService.loadUserByEmail(loginDto.email());
-                identifier = loginDto.email();
-            } else {
-                throw new BadCredentialsException("Username or email must be provided");
-            }
-
-            // Authenticate the user
-            authenticationManager.authenticate(
+            // Authenticate using AuthenticationManager with email or username
+            Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            identifier, // either username or email
+                            identifier, // email or username
                             loginDto.password()
                     )
             );
+
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
             // Generate JWT token if authentication is successful
             return jwtUtil.generateToken(userDetails.getUsername());
@@ -74,7 +65,37 @@ public class UserService {
             throw new BadCredentialsException("Invalid username/email or password", ex);
         }
     }
-
+//    public String loginUser(LoginDto loginDto) {
+//        try {
+//            UserDetails userDetails;
+//            String identifier;
+//
+//            // Check if the input is a username or email
+//            if (loginDto.username() != null && !loginDto.username().isEmpty()) {
+//                userDetails = userDetailsService.loadUserByUsername(loginDto.username());
+//                identifier = loginDto.username();
+//            } else if (loginDto.email() != null && !loginDto.email().isEmpty()) {
+//                userDetails = userDetailsService.loadUserByEmail(loginDto.email());
+//                identifier = loginDto.email();
+//            } else {
+//                throw new BadCredentialsException("Username or email must be provided");
+//            }
+//
+//            // Authenticate the user
+//            authenticationManager.authenticate(
+//                    new UsernamePasswordAuthenticationToken(
+//                            identifier, // either username or email
+//                            loginDto.password()
+//                    )
+//            );
+//
+//            // Generate JWT token if authentication is successful
+//            return jwtUtil.generateToken(userDetails.getUsername());
+//        } catch (AuthenticationException ex) {
+//            // Handle authentication failure
+//            throw new BadCredentialsException("Invalid username/email or password", ex);
+//        }
+//    }
 
     public boolean deleteUserById(long id){
         if(userRepository.existsById(id)){
