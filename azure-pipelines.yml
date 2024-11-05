@@ -1,16 +1,11 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
-- main
+  - '*'  # This will trigger the pipeline for all branches
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Hello, world!
+- script: echo This pipeline was triggered by a push to ${{ github.ref }}
   displayName: 'Run a one-line script'
 
 - script: |
