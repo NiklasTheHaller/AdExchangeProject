@@ -1,6 +1,9 @@
 package com.project.ad_exchange.Service;
+
 import com.project.ad_exchange.Dto.LoginDto;
 import com.project.ad_exchange.Dto.UserDto;
+import com.project.ad_exchange.Dto.UserUpdateDto;
+
 import com.project.ad_exchange.Model.User;
 import com.project.ad_exchange.Repository.UserRepository;
 import com.project.ad_exchange.Util.JwtUtil;
@@ -16,6 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -65,37 +69,6 @@ public class UserService {
             throw new BadCredentialsException("Invalid username/email or password", ex);
         }
     }
-//    public String loginUser(LoginDto loginDto) {
-//        try {
-//            UserDetails userDetails;
-//            String identifier;
-//
-//            // Check if the input is a username or email
-//            if (loginDto.username() != null && !loginDto.username().isEmpty()) {
-//                userDetails = userDetailsService.loadUserByUsername(loginDto.username());
-//                identifier = loginDto.username();
-//            } else if (loginDto.email() != null && !loginDto.email().isEmpty()) {
-//                userDetails = userDetailsService.loadUserByEmail(loginDto.email());
-//                identifier = loginDto.email();
-//            } else {
-//                throw new BadCredentialsException("Username or email must be provided");
-//            }
-//
-//            // Authenticate the user
-//            authenticationManager.authenticate(
-//                    new UsernamePasswordAuthenticationToken(
-//                            identifier, // either username or email
-//                            loginDto.password()
-//                    )
-//            );
-//
-//            // Generate JWT token if authentication is successful
-//            return jwtUtil.generateToken(userDetails.getUsername());
-//        } catch (AuthenticationException ex) {
-//            // Handle authentication failure
-//            throw new BadCredentialsException("Invalid username/email or password", ex);
-//        }
-//    }
 
     public boolean deleteUserById(long id){
         if(userRepository.existsById(id)){
@@ -103,6 +76,35 @@ public class UserService {
             return true;
         }
         return false;
+    }
+
+    //Update User settings if they changed
+    public boolean updateUserSettings(Long id, UserUpdateDto userUpdateDto) {
+        Optional<User> userOptional = userRepository.findById(id);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+
+            // Mail
+            if (userUpdateDto.email() != null && !userUpdateDto.email().equals(user.getEmail())) {
+                user.setEmail(userUpdateDto.email());
+            }
+
+            // Username
+            if (userUpdateDto.username() != null && !userUpdateDto.username().equals(user.getUsername())) {
+                user.setUsername(userUpdateDto.username());
+            }
+
+            // Password
+            if (userUpdateDto.password() != null && !passwordEncoder.matches(userUpdateDto.password(), user.getPassword())) {
+                user.setPassword(passwordEncoder.encode(userUpdateDto.password()));
+            }
+
+            userRepository.save(user); // Save only if changes were made
+            return true;
+        } else {
+            return false; // User not found
+        }
     }
 
     public  List<User> getAllUsers(){
