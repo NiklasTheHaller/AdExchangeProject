@@ -1,12 +1,23 @@
 <template>
 	<div>
 		<h1 class="text-2xl font-bold mb-6">Registration</h1>
-		<!-- remove novalidate after testing -->
-		<form class="max-w-md mx-auto" novalidate @submit.prevent="handleSubmit">
+		<form class="max-w-md mx-auto" @submit.prevent="handleSubmit">
+			<URadioGroup
+				v-model.trim="form.accountType"
+				class="mb-4"
+				legend="Account Type"
+				:options="accountOptions" />
+			<p v-if="errors.accountType" class="text-red-500 text-sm mt-1">
+				{{ errors.accountType }}
+			</p>
+
 			<UFormGroup label="Username" name="username" class="mb-4">
 				<UInput
 					v-model.trim="form.username"
 					placeholder="Choose a unique username" />
+				<p v-if="errors.username" class="text-red-500 text-sm mt-1">
+					{{ errors.username }}
+				</p>
 			</UFormGroup>
 
 			<UFormGroup label="Email" name="email" class="mb-4">
@@ -14,8 +25,8 @@
 					v-model.trim="form.email"
 					type="email"
 					placeholder="Enter your email" />
-				<p v-if="form.email && !isEmailValid" class="text-red-500 text-sm mt-1">
-					Please enter a valid email address.
+				<p v-if="errors.email" class="text-red-500 text-sm mt-1">
+					{{ errors.email }}
 				</p>
 			</UFormGroup>
 
@@ -24,10 +35,8 @@
 					v-model.trim="form.confirmEmail"
 					type="email"
 					placeholder="Confirm your email" />
-				<p
-					v-if="form.confirmEmail && !emailsMatch"
-					class="text-red-500 text-sm mt-1">
-					Emails do not match.
+				<p v-if="errors.confirmEmail" class="text-red-500 text-sm mt-1">
+					{{ errors.confirmEmail }}
 				</p>
 			</UFormGroup>
 
@@ -35,16 +44,13 @@
 				<UInput
 					v-model="form.password"
 					type="password"
-					placeholder="Choose a strong password"
-					:class="{ 'border-red-500': !isPasswordValid && form.password }" />
+					placeholder="Choose a strong password" />
 				<p class="text-sm text-gray-600 mt-1">
 					Password must be at least 8 characters long, contain one uppercase
 					letter, and one number or special character.
 				</p>
-				<p
-					v-if="form.password && !isPasswordValid"
-					class="text-red-500 text-sm mt-1">
-					Password does not meet the requirements.
+				<p v-if="errors.password" class="text-red-500 text-sm mt-1">
+					{{ errors.password }}
 				</p>
 			</UFormGroup>
 
@@ -53,10 +59,8 @@
 					v-model="form.confirmPassword"
 					type="password"
 					placeholder="Confirm your password" />
-				<p
-					v-if="form.confirmPassword && !passwordsMatch"
-					class="text-red-500 text-sm mt-1">
-					Passwords do not match.
+				<p v-if="errors.confirmPassword" class="text-red-500 text-sm mt-1">
+					{{ errors.confirmPassword }}
 				</p>
 			</UFormGroup>
 
@@ -64,8 +68,8 @@
 				type="submit"
 				color="primary"
 				class="w-full"
-				:loading="canSubmit && isLoading"
-				:disabled="!canSubmit || isLoading">
+				:loading="isLoading"
+				:disabled="isLoading">
 				{{ isLoading ? 'Registering...' : 'Register' }}
 			</UButton>
 		</form>
@@ -73,12 +77,17 @@
 </template>
 
 <script setup>
-import { useNuxtApp } from '#app';
+import * as Yup from 'yup';
 
-const nuxtApp = useNuxtApp();
+const accountOptions = [
+	{ label: 'Advertiser', value: 'advertiser' },
+	{ label: 'Publisher', value: 'publisher' },
+];
+
 const isLoading = ref(false);
 
-const form = ref({
+const form = reactive({
+	accountType: '',
 	username: '',
 	email: '',
 	confirmEmail: '',
@@ -86,78 +95,103 @@ const form = ref({
 	confirmPassword: '',
 });
 
-const { error, execute } = $fetch(
-	'https://jsonplaceholder.typicode.com/users',
-	{
-		method: 'POST',
-		lazy: true,
-	}
-);
+const errors = reactive({
+	username: '',
+	email: '',
+	confirmEmail: '',
+	password: '',
+	confirmPassword: '',
+});
 
-// Computed properties remain the same
-const emailsMatch = computed(
-	() => form.value.email === form.value.confirmEmail
-);
-const passwordsMatch = computed(
-	() => form.value.password === form.value.confirmPassword
-);
+const validationSchema = Yup.object().shape({
+	accountType: Yup.string().required('Account type is required'),
+	username: Yup.string().required('Username is required'),
+	email: Yup.string().email('Invalid email').required('Email is required'),
+	confirmEmail: Yup.string()
+		.oneOf([Yup.ref('email'), null], 'Emails must match')
+		.required('Confirm Email is required'),
+	password: Yup.string()
+		.matches(
+			/^(?=.*[A-Z])(?=.*[\d\W]).{8,}$/,
+			'Password must be at least 8 characters long, contain one uppercase letter, and one number or special character'
+		)
+		.required('Password is required'),
+	confirmPassword: Yup.string()
+		.oneOf([Yup.ref('password'), null], 'Passwords must match')
+		.required('Confirm Password is required'),
+});
 
-const passwordRegex = /^(?=.*[A-Z])(?=.*[\d\W]).{8,}$/;
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-const isPasswordValid = computed(() => passwordRegex.test(form.value.password));
-const isEmailValid = computed(() => emailRegex.test(form.value.email));
-
-const canSubmit = computed(
-	() =>
-		Object.values(form.value).every((field) => field) &&
-		emailsMatch.value &&
-		passwordsMatch.value &&
-		isPasswordValid.value &&
-		isEmailValid.value
-);
-
-// Form submission handler
-const handleSubmit = async () => {
-	if (!canSubmit.value) return;
-
+const validateField = async (field) => {
 	try {
-		isLoading.value = true;
-		await execute({ body: form.value });
-		if (error.value) throw new Error('Registration failed');
+		errors[field] = ''; // Clear the error message for the field
+		await validationSchema.validateAt(field, form);
+	} catch (e) {
+		errors[field] = e.message; // Set the error message for the field
+	}
+};
 
-		showNotification(
-			'Success',
-			`Registration successful! Welcome, ${form.value.username}`,
-			'success'
+// Individual watchers for each form field
+watch(
+	() => form.accountType,
+	() => validateField('accountType')
+);
+watch(
+	() => form.username,
+	() => validateField('username')
+);
+watch(
+	() => form.email,
+	() => validateField('email')
+);
+watch(
+	() => form.confirmEmail,
+	() => validateField('confirmEmail')
+);
+watch(
+	() => form.password,
+	() => validateField('password')
+);
+watch(
+	() => form.confirmPassword,
+	() => validateField('confirmPassword')
+);
+
+const handleSubmit = async () => {
+	try {
+		// Clear all error messages
+		Object.keys(errors).forEach((key) => (errors[key] = ''));
+
+		// Validate the entire form
+		await validationSchema.validate(form, { abortEarly: false });
+		isLoading.value = true;
+
+		const response = await $fetch(
+			'https://jsonplaceholder.typicode.com/users',
+			{
+				method: 'POST',
+				body: form,
+			}
 		);
+
+		if (!response.ok) throw new Error('Registration failed');
+
+		alert(`Registration successful! Welcome, ${form.username}`);
 		resetForm();
 	} catch (e) {
-		showNotification('Error', e.message || 'Something went wrong', 'error');
+		if (e instanceof Yup.ValidationError) {
+			e.inner.forEach((error) => {
+				errors[error.path] = error.message;
+			});
+		} else {
+			alert(e.message || 'Something went wrong');
+		}
 	} finally {
-		console.log(
-			form.value.username,
-			form.value.email,
-			form.value.confirmEmail,
-			form.value.password,
-			form.value.confirmPassword
-		);
 		isLoading.value = false;
 	}
 };
 
-// Utility function for notifications
-const showNotification = (title, message, type) => {
-	nuxtApp.$toast[type](message, { title });
-};
-
 const resetForm = () => {
-	form.value = {
-		username: '',
-		email: '',
-		confirmEmail: '',
-		password: '',
-		confirmPassword: '',
-	};
+	Object.keys(form).forEach((key) => (form[key] = ''));
+	Object.keys(errors).forEach((key) => (errors[key] = ''));
 };
 </script>
