@@ -47,15 +47,16 @@
 
 <script setup>
 import * as Yup from 'yup';
-import InputFieldWithError from '../atoms/InputFieldWithError.vue';
+import { useApi } from '../composables/useApi';
 
-const accountOptions = [
+const { registerUser } = useApi();
+
+const accountOptions = ref([
 	{ label: 'Advertiser', value: 'advertiser' },
 	{ label: 'Publisher', value: 'publisher' },
-];
+]);
 
 const isLoading = ref(false);
-
 const form = reactive({
 	accountType: '',
 	username: '',
@@ -93,58 +94,36 @@ const validationSchema = Yup.object().shape({
 
 const validateField = async (field) => {
 	try {
-		errors[field] = ''; // Clear the error message for the field
+		errors[field] = '';
 		await validationSchema.validateAt(field, form);
 	} catch (e) {
-		errors[field] = e.message; // Set the error message for the field
+		errors[field] = e.message;
 	}
 };
 
 // Individual watchers for each form field
-watch(
-	() => form.accountType,
-	() => validateField('accountType')
-);
-watch(
-	() => form.username,
-	() => validateField('username')
-);
-watch(
-	() => form.email,
-	() => validateField('email')
-);
-watch(
-	() => form.confirmEmail,
-	() => validateField('confirmEmail')
-);
-watch(
-	() => form.password,
-	() => validateField('password')
-);
-watch(
-	() => form.confirmPassword,
-	() => validateField('confirmPassword')
+Object.keys(form).forEach((key) =>
+	watch(
+		() => form[key],
+		() => validateField(key)
+	)
 );
 
 const handleSubmit = async () => {
 	try {
-		// Clear all error messages
 		Object.keys(errors).forEach((key) => (errors[key] = ''));
-
-		// Validate the entire form
 		await validationSchema.validate(form, { abortEarly: false });
 		isLoading.value = true;
 
-		const response = await $fetch(
-			'https://jsonplaceholder.typicode.com/users',
-			{
-				method: 'POST',
-				body: form,
-			}
-		);
+		// Only send required fields to backend
+		const formData = {
+			username: form.username,
+			email: form.email,
+			password: form.password,
+			accountType: form.accountType.toUpperCase(),
+		};
 
-		if (!response.ok) throw new Error('Registration failed');
-
+		await registerUser(formData);
 		alert(`Registration successful! Welcome, ${form.username}`);
 		resetForm();
 	} catch (e) {
