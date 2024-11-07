@@ -1,0 +1,44 @@
+Index: Frontend/nuxt-ui-app/package-lock.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Frontend/nuxt-ui-app/package-lock.json b/Frontend/nuxt-ui-app/package-lock.json
+--- a/Frontend/nuxt-ui-app/package-lock.json	(revision 2ca6f11f495b5b65f3c8452179b9c16873accf4a)
++++ b/Frontend/nuxt-ui-app/package-lock.json	(date 1730562624571)
+@@ -14,7 +14,7 @@
+ 				"@nuxt/eslint-config": "^0.6.0",
+ 				"@nuxt/ui": "^2.18.5",
+ 				"@nuxtjs/eslint-module": "^4.1.0",
+-				"nuxt": "^3.12.4",
++				"nuxt": "^3.13.2",
+ 				"typescript": "^5.6.3"
+ 			}
+ 		},
+@@ -10530,7 +10530,6 @@
+ 			"resolved": "https://registry.npmjs.org/nuxt/-/nuxt-3.13.2.tgz",
+ 			"integrity": "sha512-Bjc2qRsipfBhjXsBEJCN+EUAukhdgFv/KoIR5HFB2hZOYRSqXBod3oWQs78k3ja1nlIhAEdBG533898KJxUtJw==",
+ 			"dev": true,
+-			"license": "MIT",
+ 			"dependencies": {
+ 				"@nuxt/devalue": "^2.0.2",
+ 				"@nuxt/devtools": "^1.4.2",
+Index: Frontend/nuxt-ui-app/package.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n\t\"name\": \"nuxt-app\",\r\n\t\"private\": true,\r\n\t\"type\": \"module\",\r\n\t\"scripts\": {\r\n\t\t\"build\": \"nuxt build\",\r\n\t\t\"dev\": \"nuxt dev\",\r\n\t\t\"generate\": \"nuxt generate\",\r\n\t\t\"preview\": \"nuxt preview\",\r\n\t\t\"postinstall\": \"nuxt prepare\"\r\n\t},\r\n\t\"devDependencies\": {\r\n\t\t\"@nuxt/devtools\": \"latest\",\r\n\t\t\"@nuxt/eslint-config\": \"^0.6.0\",\r\n\t\t\"@nuxt/ui\": \"^2.18.5\",\r\n\t\t\"@nuxtjs/eslint-module\": \"^4.1.0\",\r\n\t\t\"nuxt\": \"^3.12.4\",\r\n\t\t\"typescript\": \"^5.6.3\"\r\n\t},\r\n\t\"dependencies\": {\r\n\t\t\"yup\": \"^1.4.0\"\r\n\t}\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Frontend/nuxt-ui-app/package.json b/Frontend/nuxt-ui-app/package.json
+--- a/Frontend/nuxt-ui-app/package.json	(revision 2ca6f11f495b5b65f3c8452179b9c16873accf4a)
++++ b/Frontend/nuxt-ui-app/package.json	(date 1730562623947)
+@@ -14,7 +14,7 @@
+ 		"@nuxt/eslint-config": "^0.6.0",
+ 		"@nuxt/ui": "^2.18.5",
+ 		"@nuxtjs/eslint-module": "^4.1.0",
+-		"nuxt": "^3.12.4",
++		"nuxt": "^3.13.2",
+ 		"typescript": "^5.6.3"
+ 	},
+ 	"dependencies": {
