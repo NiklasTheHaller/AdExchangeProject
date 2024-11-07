@@ -8,4 +8,10 @@ export default defineNuxtConfig({
 		preference: 'system',
 		fallback: 'dark',
 	},
+	components: [
+		{
+			path: '~/components',
+			pathPrefix: false,
+		},
+	],
 });
