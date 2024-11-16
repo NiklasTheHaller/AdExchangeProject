@@ -30,13 +30,22 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable) // Disable CSRF for simplicity in development
                 .authorizeHttpRequests(authz -> authz
+                        // Permit Swagger UI and API docs
+                        .requestMatchers(
+                                "/v3/api-docs/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html"
+                        ).permitAll()
+                        // Allow all user-related endpoints
                         .requestMatchers("/users/**").permitAll()
+                        // Require authentication for all other requests
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class); // Use the autowired filter
 
         return http.build();
     }
+
 
     // Define the AuthenticationManager bean explicitly
     @Bean
