@@ -22,8 +22,14 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody UserDto userDto) {
-        User user = userService.registerUser(userDto);
-        return ResponseEntity.ok(user);
+        try {
+            User user = userService.registerUser(userDto);
+            return ResponseEntity.ok(user);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("An unexpected error occurred.");
+        }
     }
 
     @PostMapping("/login")

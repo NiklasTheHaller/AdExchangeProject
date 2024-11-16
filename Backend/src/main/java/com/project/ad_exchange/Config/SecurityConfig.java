@@ -36,8 +36,8 @@ public class SecurityConfig {
                                 "/swagger-ui/**",
                                 "/swagger-ui.html"
                         ).permitAll()
-                        // Allow all user-related endpoints
                         .requestMatchers("/users/**").permitAll()
+                        .requestMatchers("/billing/**").permitAll()
                         // Require authentication for all other requests
                         .anyRequest().authenticated()
                 )
@@ -45,7 +45,6 @@ public class SecurityConfig {
 
         return http.build();
     }
-
 
     // Define the AuthenticationManager bean explicitly
     @Bean

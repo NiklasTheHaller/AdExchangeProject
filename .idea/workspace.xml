@@ -5,13 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="040961fa-d1c5-4377-8bcf-c26335d9f8d8" name="Changes" comment="implemented Swagger UI into project">
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/ad_exchange/Controller/BillingInfoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/ad_exchange/Dto/BillingInfoDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/ad_exchange/Repository/BillingInfoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/ad_exchange/Service/BillingInfoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/project/ad_exchange/Config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/ad_exchange/Config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/project/ad_exchange/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/ad_exchange/Controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/project/ad_exchange/Model/BillingInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/ad_exchange/Model/BillingInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/project/ad_exchange/Model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/ad_exchange/Model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/project/ad_exchange/Repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/ad_exchange/Repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/project/ad_exchange/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/ad_exchange/Service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/target/classes/com/project/ad_exchange/Config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/target/classes/com/project/ad_exchange/Config/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/target/classes/com/project/ad_exchange/Controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/target/classes/com/project/ad_exchange/Controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/target/classes/com/project/ad_exchange/Model/BillingInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/target/classes/com/project/ad_exchange/Model/BillingInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/target/classes/com/project/ad_exchange/Model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/target/classes/com/project/ad_exchange/Model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/target/classes/com/project/ad_exchange/Repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/target/classes/com/project/ad_exchange/Repository/UserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/target/classes/com/project/ad_exchange/Service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/target/classes/com/project/ad_exchange/Service/UserService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="Record" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -66,7 +90,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.AdExchangeApplication.executor": "Run",
-    "git-widget-placeholder": "setup-Swagger-UI",
+    "git-widget-placeholder": "BE-Profile-Settings",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",

@@ -42,8 +42,24 @@ public class UserService {
 
 
     public User registerUser(UserDto userDto) {
+        // Check if email or username is already taken
+        if (userRepository.existsByUsername(userDto.username())) {
+            throw new IllegalArgumentException("Username is already taken.");
+        }
+        if (userRepository.existsByEmail(userDto.email())) {
+            throw new IllegalArgumentException("Email is already registered.");
+        }
+
+        // Encode the password
         String encodedPassword = passwordEncoder.encode(userDto.password());
-        User user = new User(userDto.username(), userDto.email(), encodedPassword, userDto.accountType());
+
+        // Create and save the new user
+        User user = new User();
+        user.setUsername(userDto.username());
+        user.setEmail(userDto.email());
+        user.setPassword(encodedPassword);
+        user.setAccountType(userDto.accountType()); // Assuming you have an accountType field
+
         return userRepository.save(user);
     }
 
