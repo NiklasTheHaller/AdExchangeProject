@@ -3,6 +3,7 @@ package com.project.ad_exchange.Controller;
 import com.project.ad_exchange.Dto.JwtDto;
 import com.project.ad_exchange.Dto.LoginDto;
 import com.project.ad_exchange.Dto.UserDto;
+import com.project.ad_exchange.Dto.UserUpdateDto;
 import com.project.ad_exchange.Model.User;
 import com.project.ad_exchange.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,18 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
 
+    }
+
+    //Updating User settings
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody UserUpdateDto userUpdateDto) {
+        boolean isUpdated = userService.updateUserSettings(id, userUpdateDto);
+
+        if (isUpdated) {
+            return ResponseEntity.ok("User settings updated successfully");
+        } else {
+            return ResponseEntity.status(404).body("User not found");
+        }
     }
 
     @GetMapping
