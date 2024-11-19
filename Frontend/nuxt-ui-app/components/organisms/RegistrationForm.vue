@@ -47,13 +47,13 @@
 
 <script setup>
 import * as Yup from 'yup';
-import { useApi } from '../composables/useApi';
+import { useUserApi } from '../composables/useUserApi';
 
-const { registerUser } = useApi();
+const { registerUser } = useUserApi();
 
 const accountOptions = ref([
-	{ label: 'Advertiser', value: 'advertiser' },
-	{ label: 'Publisher', value: 'publisher' },
+	{ label: 'Advertiser', value: 'ADVERTISER' },
+	{ label: 'Publisher', value: 'PUBLISHER' },
 ]);
 
 const isLoading = ref(false);
@@ -120,11 +120,12 @@ const handleSubmit = async () => {
 			username: form.username,
 			email: form.email,
 			password: form.password,
-			accountType: form.accountType.toUpperCase(),
+			accountType: form.accountType,
 		};
 
 		await registerUser(formData);
 		alert(`Registration successful! Welcome, ${form.username}`);
+		router.push('/loginPage');
 		resetForm();
 	} catch (e) {
 		if (e instanceof Yup.ValidationError) {

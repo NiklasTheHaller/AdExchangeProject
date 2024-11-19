@@ -1,11 +1,19 @@
 <script setup lang="ts">
-import { useRouter, useColorMode } from '#imports';
+import { useColorMode } from '#imports';
+import { useAuthStore } from '~/stores/auth';
 
 const colorMode = useColorMode();
-const router = useRouter();
+const authStore = useAuthStore();
 
-const goToLogin = () => {
-	router.push('/loginPage');
+// Initialize auth state on client-side
+onMounted(() => {
+	authStore.initializeAuth();
+});
+
+const logout = () => {
+	authStore.logout();
+	// Redirect to home page after logout
+	useRouter().push('/');
 };
 </script>
 
@@ -43,25 +51,35 @@ const goToLogin = () => {
 								Manage Ad Space
 							</NuxtLink>
 						</li>
-						<li>
-							<NuxtLink
-								:class="
-									colorMode.value === 'dark' ? 'text-gray-300' : 'text-gray-900'
-								"
-								to="/registrationPage"
-								active-class="router-link-active">
-								Registration
-							</NuxtLink>
-						</li>
-						<li v-if="$route.path !== '/loginPage'">
-							<UButton
-								:class="
-									colorMode.value === 'dark'
-										? 'bg-primary text-white'
-										: 'bg-black text-white'
-								"
-								@click="goToLogin">
-								Login
+						<template v-if="!authStore.isAuthenticated">
+							<li>
+								<NuxtLink
+									:class="
+										colorMode.value === 'dark'
+											? 'text-gray-300'
+											: 'text-gray-900'
+									"
+									to="/registrationPage"
+									active-class="router-link-active">
+									Registration
+								</NuxtLink>
+							</li>
+							<li>
+								<NuxtLink
+									:class="
+										colorMode.value === 'dark'
+											? 'text-gray-300'
+											: 'text-gray-900'
+									"
+									to="/loginPage"
+									active-class="router-link-active">
+									Login
+								</NuxtLink>
+							</li>
+						</template>
+						<li v-else>
+							<UButton color="gray" variant="ghost" @click="logout">
+								Logout
 							</UButton>
 						</li>
 						<li>

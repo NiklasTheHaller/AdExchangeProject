@@ -3,10 +3,10 @@ export default defineNuxtConfig({
 	devtools: { enabled: true },
 	runtimeConfig: {
 		public: {
-			apiBase: 'https://localhost:5432/users',
+			userApiBase: 'http://localhost:8080/users',
 		},
 	},
-	modules: ['@nuxt/ui', '@nuxtjs/eslint-module'],
+	modules: ['@nuxt/ui', '@nuxtjs/eslint-module', '@pinia/nuxt'],
 	compatibilityDate: '2024-10-17',
 	colorMode: {
 		classSuffix: '',
