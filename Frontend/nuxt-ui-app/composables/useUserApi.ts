@@ -39,34 +39,19 @@ export function useUserApi() {
 
 	const loginUser = async (loginData: LoginUserData, rememberMe: boolean) => {
 		try {
-			const response = await $fetch<{
-				token: string;
-				user: { username: string; accountType: string };
-			}>('/login', {
-				baseURL: userApiBase,
-				method: 'POST',
-				body: loginData,
-			});
-
-			// Store the token and user info
-			authStore.setToken(response.token, rememberMe);
-			authStore.setUser(
-				{
-					username: response.user.username,
-					accountType: response.user.accountType as
-						| 'ADMIN'
-						| 'PUBLISHER'
-						| 'ADVERTISER',
-				},
-				rememberMe
-			);
-
-			return response;
+		  const response = await $fetch<{ Token: string }>('/login', {
+			baseURL: userApiBase,
+			method: 'POST',
+			body: loginData,
+		  });
+	
+		  return response;
 		} catch (error: unknown) {
-			const apiError = error as ApiError;
-			throw new Error(apiError.data?.message || 'Login failed');
+		  const apiError = error as ApiError;
+		  throw new Error(apiError.data?.message || 'Login failed');
 		}
-	};
-
-	return { registerUser, loginUser };
-}
+	  };
+	
+	  return { registerUser, loginUser };
+	}
+	
