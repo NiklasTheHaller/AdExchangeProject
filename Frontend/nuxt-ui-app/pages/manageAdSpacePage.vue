@@ -8,7 +8,7 @@
 			<template #actions-data="{ row }">
 				<UButton
 					class="mr-2"
-					color="primary"
+					color="orange"
 					variant="soft"
 					icon="i-heroicons-pencil-square"
 					size="sm"
