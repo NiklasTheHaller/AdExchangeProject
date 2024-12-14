@@ -5,13 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="040961fa-d1c5-4377-8bcf-c26335d9f8d8" name="Changes" comment="implemented Swagger UI into project">
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/ad_exchange/Controller/AdSpaceController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/ad_exchange/Dto/AdSpaceDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/ad_exchange/Repository/AdSpaceRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/ad_exchange/Repository/WebsiteRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/ad_exchange/Service/AdSpaceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_11_2024_21_13_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_11_2024_21_13__Changes_1.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/project/ad_exchange/Config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/ad_exchange/Config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/project/ad_exchange/Model/AdSpace.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/ad_exchange/Model/AdSpace.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/target/classes/com/project/ad_exchange/Config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/target/classes/com/project/ad_exchange/Config/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/target/classes/com/project/ad_exchange/Model/AdSpace.class" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/target/classes/com/project/ad_exchange/Model/AdSpace.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Record" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -66,16 +85,19 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.AdExchangeApplication.executor": "Run",
-    "git-widget-placeholder": "setup-Swagger-UI",
+    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
+    "database.data.extractors.current.id": "Comma-separated (CSV)_id",
+    "git-widget-placeholder": "BE__ad-campaign-logic",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "configurable.group.appearance",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -109,6 +131,9 @@
       <workItem from="1731787983512" duration="96000" />
       <workItem from="1731788671963" duration="1318000" />
       <workItem from="1731790202236" duration="2627000" />
+      <workItem from="1732136040893" duration="649000" />
+      <workItem from="1732835640638" duration="353000" />
+      <workItem from="1734194707708" duration="5742000" />
     </task>
     <task id="LOCAL-00001" summary="implemented Swagger UI into project">
       <option name="closed" value="true" />

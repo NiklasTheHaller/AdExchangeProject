@@ -38,6 +38,7 @@ public class SecurityConfig {
                         ).permitAll()
                         // Allow all user-related endpoints
                         .requestMatchers("/users/**").permitAll()
+                        .requestMatchers("/adspaces/**").permitAll()
                         // Require authentication for all other requests
                         .anyRequest().authenticated()
                 )
