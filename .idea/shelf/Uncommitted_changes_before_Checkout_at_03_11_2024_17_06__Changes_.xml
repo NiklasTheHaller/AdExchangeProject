@@ -1,0 +1,54 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_03_11_2024_17_06_[Changes]" date="1730649995969" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_11_2024_17_06_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 03.11.2024 17:06 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="Backend/target/classes/com/project/ad_exchange/Model/PaymentMethodType.class" />
+    <option name="AFTER_PATH" value="Backend/target/classes/com/project/ad_exchange/Model/PaymentMethodType.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_11_2024_17_06_[Changes]/PaymentMethodType.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Backend/target/classes/com/project/ad_exchange/Model/Website.class" />
+    <option name="AFTER_PATH" value="Backend/target/classes/com/project/ad_exchange/Model/Website.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_11_2024_17_06_[Changes]/Website.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Backend/target/classes/com/project/ad_exchange/Repository/UserRepository.class" />
+    <option name="AFTER_PATH" value="Backend/target/classes/com/project/ad_exchange/Repository/UserRepository.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_11_2024_17_06_[Changes]/UserRepository.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Backend/target/classes/com/project/ad_exchange/Model/BillingInfo.class" />
+    <option name="AFTER_PATH" value="Backend/target/classes/com/project/ad_exchange/Model/BillingInfo.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_11_2024_17_06_[Changes]/BillingInfo.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Backend/target/classes/com/project/ad_exchange/AdExchangeApplication.class" />
+    <option name="AFTER_PATH" value="Backend/target/classes/com/project/ad_exchange/AdExchangeApplication.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_11_2024_17_06_[Changes]/AdExchangeApplication.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Backend/target/classes/com/project/ad_exchange/Model/Category.class" />
+    <option name="AFTER_PATH" value="Backend/target/classes/com/project/ad_exchange/Model/Category.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_11_2024_17_06_[Changes]/Category.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Backend/target/classes/com/project/ad_exchange/Model/AdSpace.class" />
+    <option name="AFTER_PATH" value="Backend/target/classes/com/project/ad_exchange/Model/AdSpace.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_11_2024_17_06_[Changes]/AdSpace.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Backend/target/classes/com/project/ad_exchange/Model/Transaction.class" />
+    <option name="AFTER_PATH" value="Backend/target/classes/com/project/ad_exchange/Model/Transaction.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_11_2024_17_06_[Changes]/Transaction.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Backend/target/classes/com/project/ad_exchange/Model/User.class" />
+    <option name="AFTER_PATH" value="Backend/target/classes/com/project/ad_exchange/Model/User.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_11_2024_17_06_[Changes]/User.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Backend/target/classes/com/project/ad_exchange/Model/AccountType.class" />
+    <option name="AFTER_PATH" value="Backend/target/classes/com/project/ad_exchange/Model/AccountType.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_11_2024_17_06_[Changes]/AccountType.class" />
+  </binary>
+</changelist>
