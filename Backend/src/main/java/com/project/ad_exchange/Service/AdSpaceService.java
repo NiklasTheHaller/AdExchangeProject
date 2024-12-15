@@ -65,4 +65,16 @@ public class AdSpaceService {
     public List<AdSpace> getAllAdSpaces() {
         return adSpaceRepository.findAll();
     }
+
+    /**
+     * Retrieve a specific AdSpace entity by its ID.
+     *
+     * @param id The ID of the AdSpace to retrieve.
+     * @return The AdSpace entity if found.
+     */
+    public AdSpace getAdSpaceById(Long id) {
+        return adSpaceRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("AdSpace not found for ID: " + id));
+    }
+
 }

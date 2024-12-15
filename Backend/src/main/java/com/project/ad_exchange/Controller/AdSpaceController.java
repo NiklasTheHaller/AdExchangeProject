@@ -42,4 +42,16 @@ public class AdSpaceController {
         List<AdSpace> adSpaces = adSpaceService.getAllAdSpaces();
         return ResponseEntity.ok(adSpaces);
     }
+
+    /**
+     * Retrieve an AdSpace by ID.
+     *
+     * @param id The ID of the AdSpace.
+     * @return The AdSpace entity.
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<AdSpace> getAdSpace(@PathVariable Long id) {
+        AdSpace adSpace = adSpaceService.getAdSpaceById(id);
+        return ResponseEntity.ok(adSpace);
+    }
 }

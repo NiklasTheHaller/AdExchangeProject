@@ -20,9 +20,12 @@
 	},
 	"dependencies": {
 		"@pinia/nuxt": "^0.7.0",
+		"axios": "^1.7.9",
 		"eslint": "^9.14.0",
 		"ohmyfetch": "^0.4.21",
 		"pinia": "^2.2.6",
+		"vue": "^3.5.13",
+		"vue-router": "^4.5.0",
 		"yup": "^1.4.0"
 	}
 }
