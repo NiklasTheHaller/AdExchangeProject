@@ -1,26 +1,19 @@
 package com.project.ad_exchange.Service;
 
-import com.project.ad_exchange.Dto.LoginDto;
+
 import com.project.ad_exchange.Dto.UserDto;
 import com.project.ad_exchange.Dto.UserUpdateDto;
 
 import com.project.ad_exchange.Model.User;
 import com.project.ad_exchange.Repository.UserRepository;
-import com.project.ad_exchange.Util.JwtUtil;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
 @Service
 public class UserService {
 
@@ -30,14 +23,7 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private CustomUserDetailsService userDetailsService;
 
-    @Autowired
-    private JwtUtil jwtUtil;
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
 
 
 
@@ -47,28 +33,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public String loginUser(LoginDto loginDto) {
-        try {
-            String identifier = (loginDto.username() != null && !loginDto.username().isEmpty())
-                    ? loginDto.username() : loginDto.email();
 
-            // Authenticate using AuthenticationManager with email or username
-            Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                            identifier, // email or username
-                            loginDto.password()
-                    )
-            );
-
-            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-
-            // Generate JWT token if authentication is successful
-            return jwtUtil.generateToken(userDetails.getUsername());
-        } catch (AuthenticationException ex) {
-            // Handle authentication failure
-            throw new BadCredentialsException("Invalid username/email or password", ex);
-        }
-    }
 
     public boolean deleteUserById(long id){
         if(userRepository.existsById(id)){
@@ -109,6 +74,12 @@ public class UserService {
 
     public  List<User> getAllUsers(){
         return userRepository.findAll();
+    }
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
 
+    public Optional<User> findByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 }
